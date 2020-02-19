@@ -20,13 +20,15 @@ app.post('/scrape', async (req, res) => {
     let term = req.body.term;
     let startDate = req.body.startDate;
     let endDate = req.body.endDate;
-    let chunk = req.body.chunk;
+    let chunks = req.body.chunks;
     let email = req.body.email;
+
+    console.log(req.body);
 
     res.status(200);
     res.send("Starting Scraping");
 
-    let ret = await scraper.run(term, startDate, endDate, chunk);
+    let ret = await scraper.run(term, startDate, endDate, chunks);
 
     MongoClient.connect(mongoURL, (err, client) => {
         assert.equal(null, err);
@@ -45,7 +47,8 @@ app.post('/scrape', async (req, res) => {
                 path = "./files/" + response.ops[0]._id + ".csv";
                 toCSV(ret, path);
                 let link = "http://localhost:3000/download?id=" + response.ops[0]._id
-                sendEmail(email, link);
+                // sendEmail(email, link);
+                console.log(`The link is: ${link}`);
             }
         });
 

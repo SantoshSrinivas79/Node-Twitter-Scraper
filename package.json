@@ -26,6 +26,7 @@
     "mysql2": "^1.5.3",
     "nodemailer": "^4.6.7",
     "puppeteer": "^1.18.1",
+    "puppeteer-autoscroll-down": "^0.1.2",
     "sequelize": "^6.0.0"
   }
 }

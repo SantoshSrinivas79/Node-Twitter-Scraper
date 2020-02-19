@@ -80,7 +80,13 @@ module.exports = {
     "splitDateRange": function(startDate, endDate, chunks) {
         let start = new Date(startDate);
         let end = new Date(endDate);
+
+        console.log(`The start is: ${start}, the end is at ${end}, the chunks is at ${chunks}`);
+
         let ret = chunk(start, end, chunks);
+        
+
+
         return ret.map(function(dateRange) {
             return {
                 'start': dateformat(dateRange.start, "yyyy-mm-dd"),
